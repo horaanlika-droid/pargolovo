@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futurama Shop — обменник валют New New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Фоновый画布 с окнами New New York -->
+<canvas id="bgCanvas" class="bg-canvas"></canvas>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <span class="logo-bubble">F</span>
+      <span class="logo-text">Futurama <span class="logo-accent">Shop</span></span>
+    </a>
+    <div class="hero-tag">
+      Лучший обменник в 3000-м веке! Доставка клоном не входит.
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Маскоты -->
+  <section class="mascots">
+    <h2 class="section-title">Наша команда New New York</h2>
+    <div class="mascot-grid">
+      <article class="mascot-card" data-mascot="bender">
+        <div class="mascot-wrap">
+          <div class="mascot" id="m-bender"></div>
+          <div class="mascot-name">Бендер</div>
+          <div class="mascot-role">Гибкий робот-гибкий</div>
+          <button class="mascot-quote" type="button">Ай, не wanna!</button>
+        </div>
+      </article>
+      <article class="mascot-card" data-mascot="fry">
+        <div class="mascot-wrap">
+          <div class="mascot" id="m-fry"></div>
+          <div class="mascot-name">Фрай</div>
+          <div class="mascot-rank">Доставщик пиццы</div>
+          <button class="mascot-quote" type="button">Вау! Деньги!</button>
+        </div>
+      </article>
+      <article class="mascot-card" data-mascot="leela">
+        <div class="mascot-wrap">
+          <div class="mascot" id="m-leela"></div>
+          <div class="mascot-name">Лила</div>
+          <div class="mascot-rank">Капитан Planet Express</div>
+          <button class="mascot-quote" type="button">Заберу ваши валюты.</button>
+        </div>
+      </article>
+      <article class="mascot-card" data-mascot="zoidberg">
+        <div class="mascot-wrap">
+          <div class="mascot" id="m-zoidberg"></div>
+          <div class="mascot-name">Доктор Цойдберг</div>
+          <div class="mascot-rank">Врач (почти)</div>
+          <button class="mascot-quote" type="button">Ура! Бесплатно!</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Обменник -->
+  <section class="exchange-card">
+    <div class="exchange-header">
+      <h2 class="exchange-title">Обменник валют</h2>
+      <div class="live-rate" id="liveRate">Курс обновляется…</div>
+    </div>
+
+    <div class="exchange-body">
+      <div class="currency-row">
+        <div class="amount-control">
+          <label>Отдаёте</label>
+          <input type="number" id="amountFrom" placeholder="0.00" value="100">
+          <select id="currencyFrom">
+            <option value="USD">💵 USD (Земля XX в.)</option>
+            <option value="EUR">💶 EUR (Евро- redundant)</option>
+            <option value="RUB">₽ RUB (Старый Нью-Джерси)</option>
+            <option value="GBP">£ GBP (Лондон Луны)</option>
+            <option value="JPY">¥ JPY (Токио-ORB)</option>
+            <option value="BTC">₿ BTC (Крипто-роботы)</option>
+          </select>
+        </div>
+        <div class="swap" id="swapBtn" title="Поменять валюты местами">⇄</div>
+        <div class="amount-control">
+          <label>Получаете</label>
+          <input type="number" id="amountTo" placeholder="0.00" readonly>
+          <select id="currencyTo">
+            <option value="EUR">💶 EUR (Евро- redundant)</option>
+            <option value="USD">💵 USD (Земля XX в.)</option>
+            <option value="RUB">₽ RUB (Старый Нью-Джерси)</option>
+            <option value="GBP">£ GBP (Лондон Луны)</option>
+            <option value="JPY">¥ JPY (Токио-ORB)</option>
+            <option value="BTC">₿ BTC (Крипто-роботы)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="exchange-actions">
+        <button class="btn-exchange" id="exchangeBtn">Обменять!</button>
+        <span class="fee-note" id="feeNote">Комиссия робота: 2,9 % (Бендер говорит — меньше не будет)</span>
+      </div>
+
+      <div class="rates-table-wrap">
+        <table class="rates-table">
+          <thead><tr><th>Пара</th><th>Покупка</th><th>Продажа</th><th>Изменение</th></tr></thead>
+          <tbody id="ratesBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section class="reviews">
+    <h2 class="section-title">Что говорят клиенты</h2>
+    <div class="review-grid" id="reviewsList"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo-bubble">F</span>
+      <strong>Futurama Shop</strong>
+      <span class="footer-note">Обменник New New York — работает с 2999 года.</span>
+    </div>
+    <div class="footer-copy">
+      &copy; 3000 Futurama Shop. Все права защищены (и клонированы).
+      <br>Ни один робот не пострадал при обмене валют. (Бендер пострадал.)
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
