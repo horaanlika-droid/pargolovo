@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Futurama Shop — обменник валют New New York</title>
+<title>Futurama Shop — подарочные карты New New York, 3000 год</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
@@ -11,7 +11,6 @@
 </head>
 <body>
 
-<!-- Фоновый画布 с окнами New New York -->
 <canvas id="bgCanvas" class="bg-canvas"></canvas>
 
 <header class="site-header">
@@ -21,7 +20,7 @@
       <span class="logo-text">Futurama <span class="logo-accent">Shop</span></span>
     </a>
     <div class="hero-tag">
-      Лучший обменник в 3000-м веке! Доставка клоном не входит.
+      Лучший обменник в 3000-м веке! Подарочные карты — у каждой свой честный курс.
     </div>
   </div>
 </header>
@@ -34,58 +33,176 @@
     <div class="mascot-grid">
       <article class="mascot-card" data-mascot="bender">
         <div class="mascot-wrap">
-          <div class="mascot" id="m-bender"></div>
+          <div class="mascot" id="m-bender">
+            <div class="antenna"></div>
+            <div class="eye-l"></div><div class="eye-r"></div>
+          </div>
           <div class="mascot-name">Бендер</div>
-          <div class="mascot-role">Гибкий робот-гибкий</div>
-          <button class="mascot-quote" type="button">Ай, не wanna!</button>
+          <div class="mascot-role">Отвечает за курсы Apple</div>
+          <button class="mascot-quote" type="button">Курс Apple — 94,8 ₽, и точка!</button>
         </div>
       </article>
       <article class="mascot-card" data-mascot="fry">
         <div class="mascot-wrap">
-          <div class="mascot" id="m-fry"></div>
+          <div class="mascot" id="m-fry">
+            <div class="hair"></div>
+            <div class="face"><div class="eye l"></div><div class="eye r"></div><div class="mouth"></div></div>
+            <div class="jacket"></div>
+          </div>
           <div class="mascot-name">Фрай</div>
-          <div class="mascot-rank">Доставщик пиццы</div>
-          <button class="mascot-quote" type="button">Вау! Деньги!</button>
+          <div class="mascot-rank">Доставщик Steam-карт</div>
+          <button class="mascot-quote" type="button">Вау! Steam по 77,8 ₽!</button>
         </div>
       </article>
       <article class="mascot-card" data-mascot="leela">
         <div class="mascot-wrap">
-          <div class="mascot" id="m-leela"></div>
+          <div class="mascot" id="m-leela">
+            <div class="tail"></div>
+            <div class="head"><div class="mouth"></div></div>
+            <div class="eye"><div class="pupil"></div></div>
+            <div class="suit"><div class="belt"></div></div>
+          </div>
           <div class="mascot-name">Лила</div>
-          <div class="mascot-rank">Капитан Planet Express</div>
-          <button class="mascot-quote" type="button">Заберу ваши валюты.</button>
+          <div class="mascot-rank">Капитан проверки карт</div>
+          <button class="mascot-quote" type="button">Все карты проверены, курс честный.</button>
         </div>
       </article>
       <article class="mascot-card" data-mascot="zoidberg">
         <div class="mascot-wrap">
-          <div class="mascot" id="m-zoidberg"></div>
+          <div class="mascot" id="m-zoidberg">
+            <div class="claw l"></div><div class="claw r"></div>
+            <div class="head"><div class="eye l"></div><div class="eye r"></div><div class="mouth"></div></div>
+            <div class="shell"></div>
+          </div>
           <div class="mascot-name">Доктор Цойдберг</div>
-          <div class="mascot-rank">Врач (почти)</div>
-          <button class="mascot-quote" type="button">Ура! Бесплатно!</button>
+          <div class="mascot-rank">Скупает Ozon по 0,88 ₽</div>
+          <button class="mascot-quote" type="button">Ура! Ozon! Почти даром!</button>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- Обменник -->
-  <section class="exchange-card">
+  <!-- ПОДАРОЧНЫЕ КАРТЫ — ГЛАВНЫЙ БЛОК -->
+  <section class="gift-section" id="giftSection">
+    <div class="gift-badge-top">
+      <span class="pulse-dot"></span>
+      Курсы обновляются живо — для каждой карты отдельно
+    </div>
+    <h2 class="section-title">Подарочные карты — свой курс для каждой</h2>
+    <p class="gift-intro">
+      Никакого общего курса! У <strong>каждой подарочной карты свой покупной и продажный курс</strong>.
+      Бендер не врёт: Apple, Steam и PlayStation живут по разным правилам — смотри, сравнивай, выбирай.
+      Нажми на карту — калькулятор сразу посчитает твою выплату.
+    </p>
+
+    <!-- Фильтры -->
+    <div class="gift-filters" id="giftFilters">
+      <button class="filter-btn active" data-filter="all">Все карты</button>
+      <button class="filter-btn" data-filter="games">🎮 Игры</button>
+      <button class="filter-btn" data-filter="shop">🛒 Магазины</button>
+      <button class="filter-btn" data-filter="media">🎬 Подписки</button>
+      <button class="filter-btn" data-filter="ru">🇷🇺 Россия</button>
+    </div>
+
+    <!-- Сетка карт -->
+    <div class="gift-grid" id="giftGrid"></div>
+
+    <!-- Таблица курсов по картам -->
+    <div class="gift-rates-wrap">
+      <div class="gift-rates-head">
+        <h3>📊 Курсовая доска подарочных карт</h3>
+        <span class="live-dot">● LIVE</span>
+      </div>
+      <p class="gift-rates-sub">Покупка — мы покупаем у вас. Продажа — мы продаём вам. Курс каждой карты меняется независимо.</p>
+      <div class="rates-table-wrap">
+        <table class="rates-table gift-table">
+          <thead><tr><th>Карта</th><th>Покупка <span>(вы нам)</span></th><th>Продажа <span>(мы вам)</span></th><th>Изменение</th><th></th></tr></thead>
+          <tbody id="giftRatesBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Калькулятор подарочной карты -->
+    <div class="gift-calc-card" id="giftCalc">
+      <div class="gift-calc-header">
+        <div>
+          <h3 id="giftCalcTitle">🍎 Apple — калькулятор</h3>
+          <p id="giftCalcSubtitle">Выберите карту выше или в списке — курс подставится автоматически</p>
+        </div>
+        <div class="gift-calc-rate" id="giftCalcRate">1 $ = 82,50 ₽</div>
+      </div>
+
+      <div class="gift-calc-body">
+        <div class="gift-select-row">
+          <label for="giftSelect">Подарочная карта</label>
+          <select id="giftSelect"></select>
+        </div>
+
+        <div class="mode-switch" id="modeSwitch">
+          <button type="button" class="mode-btn active" data-mode="sell">
+            <span class="mode-ico">💰</span>
+            <span><strong>Продать карту</strong><br><small>получить рубли</small></span>
+          </button>
+          <button type="button" class="mode-btn" data-mode="buy">
+            <span class="mode-ico">🛍️</span>
+            <span><strong>Купить карту</strong><br><small>заплатить рублями</small></span>
+          </button>
+        </div>
+
+        <div class="gift-amounts">
+          <div class="amount-control">
+            <label id="giftFromLabel">Номинал карты (USD)</label>
+            <input type="number" id="giftAmount" placeholder="100" value="100" min="1" step="1">
+            <span class="hint" id="giftNominalHint">Например: 100 $</span>
+          </div>
+
+          <div class="swap gift-swap" id="giftSwapBtn" title="Поменять направление">⇄</div>
+
+          <div class="amount-control">
+            <label id="giftToLabel">Вы получите (RUB)</label>
+            <input type="number" id="giftResult" placeholder="0.00" readonly>
+            <span class="hint" id="giftResultHint">Авто-расчёт по курсу карты</span>
+          </div>
+        </div>
+
+        <div class="gift-details" id="giftDetails">
+          <div class="detail"><span>Карта:</span><strong id="detailCard">Apple & iTunes (США)</strong></div>
+          <div class="detail"><span>Курс:</span><strong id="detailRate">82,50 ₽ за 1 $</strong></div>
+          <div class="detail"><span>Комиссия карты:</span><strong id="detailFee">2,5 % — уже в курсе</strong></div>
+        </div>
+
+        <button class="btn-exchange gift-action" id="giftActionBtn">Оформить заявку на продажу</button>
+        <div class="fee-note" id="giftFeeNote">Курс Apple — 82,50 ₽ покупка / 94,80 ₽ продажа. Комиссия уже включена.</div>
+      </div>
+    </div>
+
+    <div class="gift-perks">
+      <div class="perk"><span>⚡</span><strong>Моментально</strong><p>Код приходит за 1–3 минуты после проверки</p></div>
+      <div class="perk"><span>🛡️</span><strong>Гарантия 3000</strong><p>Лила лично проверяет каждый код</p></div>
+      <div class="perk"><span>🤖</span><strong>Свой курс</strong><p>У каждой карты — отдельный курс и динамика</p></div>
+    </div>
+  </section>
+
+  <!-- Обменник валют (оставляем как доп. блок) -->
+  <section class="exchange-card" id="currencySection">
     <div class="exchange-header">
-      <h2 class="exchange-title">Обменник валют</h2>
+      <h2 class="exchange-title">Обмен валют</h2>
       <div class="live-rate" id="liveRate">Курс обновляется…</div>
     </div>
 
     <div class="exchange-body">
+      <p class="exchange-desc">Классический обмен: USD, EUR, RUB, GBP, JPY, BTC. Для подарочных карт — смотри блок выше, там у каждой карты свой курс.</p>
       <div class="currency-row">
         <div class="amount-control">
           <label>Отдаёте</label>
           <input type="number" id="amountFrom" placeholder="0.00" value="100">
           <select id="currencyFrom">
-            <option value="USD">💵 USD (Земля XX в.)</option>
-            <option value="EUR">💶 EUR (Евро- redundant)</option>
-            <option value="RUB">₽ RUB (Старый Нью-Джерси)</option>
-            <option value="GBP">£ GBP (Лондон Луны)</option>
-            <option value="JPY">¥ JPY (Токио-ORB)</option>
-            <option value="BTC">₿ BTC (Крипто-роботы)</option>
+            <option value="USD">💵 USD — Доллар США</option>
+            <option value="EUR">💶 EUR — Евро</option>
+            <option value="RUB">₽ RUB — Российский рубль</option>
+            <option value="GBP">£ GBP — Фунт стерлингов</option>
+            <option value="JPY">¥ JPY — Японская иена</option>
+            <option value="BTC">₿ BTC — Биткоин</option>
           </select>
         </div>
         <div class="swap" id="swapBtn" title="Поменять валюты местами">⇄</div>
@@ -93,19 +210,19 @@
           <label>Получаете</label>
           <input type="number" id="amountTo" placeholder="0.00" readonly>
           <select id="currencyTo">
-            <option value="EUR">💶 EUR (Евро- redundant)</option>
-            <option value="USD">💵 USD (Земля XX в.)</option>
-            <option value="RUB">₽ RUB (Старый Нью-Джерси)</option>
-            <option value="GBP">£ GBP (Лондон Луны)</option>
-            <option value="JPY">¥ JPY (Токио-ORB)</option>
-            <option value="BTC">₿ BTC (Крипто-роботы)</option>
+            <option value="EUR">💶 EUR — Евро</option>
+            <option value="USD">💵 USD — Доллар США</option>
+            <option value="RUB">₽ RUB — Российский рубль</option>
+            <option value="GBP">£ GBP — Фунт стерлингов</option>
+            <option value="JPY">¥ JPY — Японская иена</option>
+            <option value="BTC">₿ BTC — Биткоин</option>
           </select>
         </div>
       </div>
 
       <div class="exchange-actions">
-        <button class="btn-exchange" id="exchangeBtn">Обменять!</button>
-        <span class="fee-note" id="feeNote">Комиссия робота: 2,9 % (Бендер говорит — меньше не будет)</span>
+        <button class="btn-exchange" id="exchangeBtn">Обменять валюту</button>
+        <span class="fee-note" id="feeNote">Комиссия робота: 2,5 % — уже в курсе</span>
       </div>
 
       <div class="rates-table-wrap">
@@ -130,11 +247,12 @@
     <div class="footer-brand">
       <span class="logo-bubble">F</span>
       <strong>Futurama Shop</strong>
-      <span class="footer-note">Обменник New New York — работает с 2999 года.</span>
+      <span class="footer-note">Подарочные карты и обмен валют в New New York — работаем с 2999 года.</span>
     </div>
     <div class="footer-copy">
       &copy; 3000 Futurama Shop. Все права защищены (и клонированы).
-      <br>Ни один робот не пострадал при обмене валют. (Бендер пострадал.)
+      <br>У каждой подарочной карты — свой курс. Никаких общих котлов. Бендер проследит.
+      <br>Ни один робот не пострадал при обмене карт. (Бендер пострадал.)
     </div>
   </div>
 </footer>
